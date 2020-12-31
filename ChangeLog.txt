@@ -1,0 +1,87 @@
+1.2.1
+
+- Add read-only mode to use pspwrite as a book reader
+- Fix issue with sleep mode
+
+1.2.0
+
+- Add Recent files menu to load previously opened files 
+  (usefull to edit several files at the same time)
+- Add a kind of bookmark feature to save last cursor position
+  in each recent files.
+- Add a simple syntaxic colorization feature for C/C++ files
+  and Lua scripts.
+	(you can add any other langages in syntax.cfg file).
+- Add a status line to display several informations such as
+  current cursor position.
+- Add command mode to search a word forward and backward or 
+  to go directly to a given line number.
+- Add history feature for command mode to retreive previously 
+  entered commands.
+
+1.1.1
+
+- Bug fix in wrap mode for text using specific iso-8859-1 characters 
+  (Thanks to ShadowMaker for reporting this nauty bug)
+- New built in fonts with various size (8x10, 8x14, 8x16 and 16x22)
+
+1.1.0
+
+- Add word wrap mode !
+- New option to specify wrap settings
+- New hotkey to display help menu
+- New hotkey to rewrap a paragraph
+- A new menu for all settings
+- Minor bug fix
+
+1.0.5
+- New graphics based on hackePeter work
+- Add eboot's music
+- The virtual keyboard is now usable in the file requester menu
+- Fix IR keyboard issue with fw >= 3.80 for PSP FAT
+- Reduce default PSP clock speed (133 Mhz is good enough to write text)
+
+1.0.4
+
+- Add select/cut/copy/paste feature
+- Text can be copied to clipboard and then copied to another/new file
+  (usefull to merge several files together).
+- New files are now named using a unique id 
+  (to prevent filename conflicts)
+- New background image for file requester and help window
+
+1.0.3
+
+- Add option to change the font size (8x8 or 6x10)
+- Use Analog pad to move faster
+- New CPU clock (from 133 to 333)
+- Two cursor modes :
+  + the cursor move only on already written text.
+  + the cursor can move everywhere.
+
+1.0.2
+
+- IR keyboard is now active in all menus and the ENTER 
+  key works fine (no need to press Ctrl-X in menus)  
+- file extention are now ignored so you can edit any file
+- the last folder used to load a file becomes the new default
+  folder
+- the last folder is saved in the configuration file 
+  (so the default folder is not always pspwrite/txt/ folder)
+- options are now saved on exit
+- ask before to overwrite a file
+- keys such as page-up or page-down are now working fine
+  in the virtual keyboard
+- add missing key mapping in the help file 
+- option to specify the text and background color
+- option to specify the width/heigth of the editor screen
+  (the screen will be automatically centered)
+- tabulations are now supported 
+  (and expanded in space optionally)
+- Bug fix and code cleaning 
+
+1.0.1 Intial release
+
+- IR keyboard support
+- Iso8859-1 characters support
+- Edit huge text file, in dos or unix mode

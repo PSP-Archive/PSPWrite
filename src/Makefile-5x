@@ -1,0 +1,72 @@
+#
+# Copyright (C) 2008 Ludovic Jacomme (ludovic.jacomme@gmail.com)
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+TARGET = pspwrite
+PSPSDK = $(shell psp-config --pspsdk-path)
+PSPBIN = $(shell psp-config --psp-prefix)/bin
+SDL_CONFIG = $(PSPBIN)/sdl-config
+OBJS= psp_battery.o \
+      psp_menu.o \
+      psp_menu_set.o \
+      psp_help.o \
+      psp_global.o \
+      psp_main.o  \
+      psp_fmgr.o \
+      psp_sdl.o psp_font.o psp_danzeff.o \
+      psp_irkeyb.o psp_recent.o psp_editor.o psp_syntax.o
+
+DEFAULT_CFLAGS = $(shell $(SDL_CONFIG) --cflags)
+PSP_FW_VERSION=500
+PSPWRITE_VERSION=1.2.1-fw5x
+
+INCDIR = 
+CFLAGS = $(DEFAULT_CFLAGS) -O2 -Wall -DPSP -DPSPFW30X \
+-DUSE_PSP_IRKEYB  -DPSPWRITE_VERSION=\"$(PSPWRITE_VERSION)\" \
+-DNO_STDIO_REDIRECT
+
+# -DDEBUG
+
+CXXFLAGS = $(CFLAGS) -fno-exceptions -fno-rtti
+ASFLAGS = $(CFLAGS) -c
+
+LIBDIR =
+LDFLAGS =
+LIBS += -lpspirkeyb  -lpspwlan -lpsppower -lSDL_image -lSDL -lpng -ljpeg -lpspaudio -lpspgu -lpsphprm -lz -lm
+
+BUILD_PRX=1
+
+EXTRA_TARGETS = EBOOT.PBP
+PSP_EBOOT_TITLE = PSPWRITE-v$(PSPWRITE_VERSION)
+PSP_EBOOT_ICON= pspwrite.png
+PSP_EBOOT_PIC1 = pspwrite-pic.png
+PSP_EBOOT_SND0  = pspwrite.at3
+
+include $(PSPSDK)/lib/build.mak
+
+install: all
+	@mkdir -p /media/usbdisk/psp/game5XX/pspwrite/
+	cp EBOOT.PBP /media/usbdisk/psp/game5XX/pspwrite/
+
+realclean:
+	/bin/rm -f $(OBJS) EBOOT.PBP PARAM.SFO
+
+ctags:
+	ctags *[chpyl]
+
+release: all
+	cp EBOOT.PBP ../fw4x/pspwrite/
+
