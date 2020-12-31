@@ -36,7 +36,7 @@ PSPWRITE_VERSION=1.2.1-fw5x
 INCDIR = 
 CFLAGS = $(DEFAULT_CFLAGS) -O2 -Wall -DPSP -DPSPFW30X \
 -DUSE_PSP_IRKEYB  -DPSPWRITE_VERSION=\"$(PSPWRITE_VERSION)\" \
--DNO_STDIO_REDIRECT
+-DNO_STDIO_REDIRECT -G0
 
 # -DDEBUG
 
@@ -45,7 +45,7 @@ ASFLAGS = $(CFLAGS) -c
 
 LIBDIR =
 LDFLAGS =
-LIBS += -lpspirkeyb  -lpspwlan -lpsppower -lSDL_image -lSDL -lpng -ljpeg -lpspaudio -lpspgu -lpsphprm -lz -lm
+LIBS += -lpspirkeyb  -lpspwlan -lpsppower -lSDL_image -lSDL -lGL -lpng -ljpeg -lpspaudio -lpspvfpu -lpspgu -lpsprtc -lpsphprm -lz -lm
 
 BUILD_PRX=1
 
