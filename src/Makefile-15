@@ -33,8 +33,8 @@ DEFAULT_CFLAGS = $(shell $(SDL_CONFIG) --cflags)
 PSP_FW_VERSION=15
 PSPWRITE_VERSION=1.2.1-fw15
 
-INCDIR = 
-CFLAGS = $(DEFAULT_CFLAGS) -O2 -Wall -DPSP \
+INCDIR =
+CFLAGS = $(DEFAULT_CFLAGS) -G0 -O2 -Wall -DPSP \
 -DUSE_PSP_IRKEYB  -DPSPWRITE_VERSION=\"$(PSPWRITE_VERSION)\" \
 -DNO_STDIO_REDIRECT
 
@@ -45,7 +45,7 @@ ASFLAGS = $(CFLAGS) -c
 
 LIBDIR =
 LDFLAGS =
-LIBS += -lpspirkeyb  -lpspwlan -lpsppower -lSDL_image -lSDL -lpng -ljpeg -lpspaudio -lpspgu -lpsphprm -lz -lm
+LIBS += -lpspirkeyb -lpspwlan -lpsppower -lSDL_image -lSDL -lGL -lGLU -lpsprtc -lpspvfpu -lpng -ljpeg -lpspaudio -lpspgu -lpsphprm -lz -lm
 
 EXTRA_TARGETS = EBOOT.PBP
 PSP_EBOOT_TITLE = PSPWRITE-v$(PSPWRITE_VERSION)
@@ -56,15 +56,3 @@ PSP_EBOOT_SND0  = pspwrite.at3
 include $(PSPSDK)/lib/build.mak
 
 all: SCEkxploit
-
-install: all
-	@mkdir -p /media/usbdisk/psp/game150/__SCE__pspwrite/
-	@mkdir -p /media/usbdisk/psp/game150/%__SCE__pspwrite/
-	cp __SCE__pspwrite/EBOOT.PBP /media/usbdisk/psp/game150/__SCE__pspwrite/
-	cp %__SCE__pspwrite/EBOOT.PBP /media/usbdisk/psp/game150/%__SCE__pspwrite/
-
-realclean:
-	/bin/rm -f $(OBJS) EBOOT.PBP PARAM.SFO
-
-ctags:
-	ctags *[chpyl]
